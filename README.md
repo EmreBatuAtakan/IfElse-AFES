@@ -55,6 +55,8 @@ Some of the sensors and the gases they detect can be listed as;
 * [MQ-9](https://www.electronicoscaldas.com/datasheet/MQ-9_Hanwei.pdf)
 
 > Alternatives can be used if possible.
+>
+> Used [pins of ESP32](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)s that are defined in both the robot code and the sensor box code must be changed if needed.
 
 #### Software Dependencies
 * [Arduino Software](https://www.arduino.cc/en/software)
