@@ -1,11 +1,14 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-uint8_t broadcastAddress[] = {0x40, 0x22, 0xD8, 0x60, 0xD1, 0x10}; //CHANGE WITH RECIEVER'S MAC ADDRESS
+uint8_t broadcastAddress[] = {0x40, 0x22, 0xD8, 0x60, 0xD1, 0x10}; //reciever device's mac address
+
+//Following definitions depend on what pin the component is connected to.
 
 #define MQ2 12
 #define MQ7 14
 
+//defined message structure
 typedef struct struct_message {
   int a;
 } struct_message;
@@ -14,6 +17,7 @@ struct_message myData;
 
 esp_now_peer_info_t peerInfo;
 
+//on data sent
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
@@ -48,11 +52,11 @@ void loop() {
 
   int sensorTotal = 0;
 
-  if (sensorMQ2 > 600) { //change the values accordingly
+  if (sensorMQ2 > 600) { //change the values accordingly, datasheets mentioned in README.md
     sensorTotal++;
   }
 
-  if (sensorMQ7 > 600) { //change the values accordingly
+  if (sensorMQ7 > 600) { //change the values accordingly, datasheets mentioned in README.md
     sensorTotal++;
     sensorTotal++;
   }
