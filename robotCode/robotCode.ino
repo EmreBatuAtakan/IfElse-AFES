@@ -2,6 +2,10 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
+//TODO: Flame sensor module movement to be fixed.
+
+//Following definitions depend on what pin the component is connected to.
+
 #define left 21
 #define center 22
 #define right 23
@@ -33,7 +37,7 @@ int limit = 0;
 int extinguisher1 = 16;
 int extinguisher2 = 4;
 
-//create message struction
+//create message structure
 typedef struct struct_message {
   int a;
 } struct_message;
@@ -45,7 +49,7 @@ bool MQ7Detected = false;
 bool anyFire = false;
 int closestFLAME;
 
-//on data recieve
+//on data receive
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
   memcpy(&myData, incomingData, sizeof(myData));
   Serial.println(myData.a);
@@ -209,6 +213,8 @@ void extinguishMQ7() {
 		delay(15);
   }
 }
+
+//Following digitalWrite values depend on how the power connections are done to motor driver modules.
 
 void carForward() {
   digitalWrite(Front_L1, LOW);
